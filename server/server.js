@@ -1,41 +1,26 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 require('./config/config');
+const mongoose = require('mongoose');
 const app = express();
+
+app.use(require('./routes/usuarios'));
 
 //parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
     //parse application/json
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
 
-    res.json('HOLA GET');
+mongoose.connect('mongodb://localhost:27017/cafe', (err, res) => {
 
-})
-app.post('/usuario/:id', (req, res) => {
+    if (err) throw err;
 
-    let body = req.body;
-    res.json({
-        body
-    })
-})
-app.put('/usuario/:id', (req, res) => {
-
-    let id = req.params.id;
-    res.json({
-        id
-    });
-
-})
-app.delete('/', (req, res) => {
-
-    res.json('HOLA DELETE');
-
-})
+    console.log('base de datos ONLINE');
+});
 
 app.listen(process.env.PORT, () => {
 
     console.log(`Servidor escuchando en puerto ${process.env.PORT}`);
 
-})
+});
