@@ -1,23 +1,24 @@
+require('./config/config');
 const express = require('express');
 const bodyParser = require('body-parser');
-require('./config/config2');
 const mongoose = require('mongoose');
 const app = express();
 
-app.use(require('./routes/usuarios'));
 
 //parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 //parse application/json
 app.use(bodyParser.json());
 
+app.use(require('./routes/usuario'));
 
-mongoose.connect('mongodb://localhost:27017/cafe', (err, res) => {
+mongoose.connect(process.env.NODE_ENV, { useNewUrlParser: true }, (err, res) => {
 
     if (err) throw err;
 
     console.log('base de datos ONLINE');
 });
+mongoose.set('useCreateIndex', true)
 
 app.listen(process.env.PORT, () => {
 
