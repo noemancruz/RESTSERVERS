@@ -77,7 +77,7 @@ app.put('/usuario/:id', [verificaToken, verificaAdmin_Role], (req, res) => {
     let body = _.pick(req.body, 'nombre', 'email', 'img', 'role', 'estado');
 
     //runValidators: true //ejecuta las validaciones antes de actualizar
-    Usuario.findOneAndUpdate(id, body, { new: true, runValidators: true, context: 'query' }, (err, usuarioDB) => {
+    Usuario.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'query' }, (err, usuarioDB) => {
         if (err) {
             return res.status(400).json({
                 ok: false,
