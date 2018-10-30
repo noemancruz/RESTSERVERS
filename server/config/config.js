@@ -17,6 +17,9 @@ process.env.EXPIRACION = process.env.EXPIRACION || 60 * 60 * 24 * 30;
 //SEED
 process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo';
 
+//GOOGLE CLIENT ID
+process.env.CLIENT_ID = process.env.CLIENT_ID || '534761879512-bt3lcuuaajhsoai5lp5ao128evr87hn7.apps.googleusercontent.com';
+
 let urlDB;
 
 if (process.env.NODE_ENV === 'dev') {
