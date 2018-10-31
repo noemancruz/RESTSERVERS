@@ -46,6 +46,12 @@ app.get('/producto/:id', verificaToken, (req, res) => {
                     err
                 })
             }
+            if (!productoDB) {
+                return res.status(400).json({
+                    ok: false,
+                    err
+                })
+            }
             res.json({
                 ok: true,
                 productoDB
