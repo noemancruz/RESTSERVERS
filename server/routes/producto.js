@@ -49,7 +49,9 @@ app.get('/producto/:id', verificaToken, (req, res) => {
             if (!productoDB) {
                 return res.status(400).json({
                     ok: false,
-                    err
+                    err: {
+                        message: 'el producto no existe'
+                    }
                 })
             }
             res.json({
